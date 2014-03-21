@@ -38,11 +38,12 @@ func failOnError(e error) { // {{{
 
 func main() { // {{{
 
-	root := os.Getenv("HOME")
+	root, e := os.Getwd()
+	failOnError(e)
 
 	fmt.Println("root", root)
 
-	e := filepath.Walk(root, walkFn)
+	e = filepath.Walk(root, walkFn)
 	failOnError(e)
 
 } // }}}
